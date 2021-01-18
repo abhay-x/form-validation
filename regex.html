@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function validate() {
+        document.getElementById("erremail").innerHTML = "";
+        document.getElementById("errpass1").innerHTML = "";
+        document.getElementById("errpass2").innerHTML = "";
+        document.getElementById("success").innerHTML = "";
+        var mail, pass, repass;
+        mail = document.getElementById("email").value;
+        pass = document.getElementById("pass").value;
+        repass = document.getElementById("repass").value;
+        var flag = 1;
+
+        if (mail == "") {
+          document.getElementById("erremail").innerHTML = "Enter E-mail";
+          flag = 0;
+        } else {
+          var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+          if (reg.test(mail) == false) {
+            document.getElementById("erremail").innerHTML = "Invalid email";
+          }
+        }
+
+        if (pass == "") {
+          document.getElementById("errpass1").innerHTML = "Enter password";
+          flag = 0;
+        }
+        if (repass == "") {
+          document.getElementById("errpass2").innerHTML = "Enter password";
+          flag = 0;
+        }
+        if (pass != repass && pass != "" && repass != "") {
+          document.getElementById("errpass2").innerHTML =
+            "password doesn't match";
+          flag = 0;
+        }
+        if (flag == 1) {
+          document.getElementById("success").innerHTML = "Registration success";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <center>
+      <h1>Registration page</h1>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" id="name" value="" /></td>
+        </tr>
+        <tr>
+          <td>Username:</td>
+          <td><input type="text" id="uname" value="" /></td>
+        </tr>
+        <tr>
+          <td>E-mail Id:</td>
+          <td><input type="text" id="email" value="" /></td>
+          <td id="erremail" style="color: red"></td>
+        </tr>
+        <tr>
+          <td>PassWord:</td>
+          <td><input type="password" id="pass" value="" /></td>
+          <td id="errpass1" style="color: red"></td>
+        </tr>
+        <tr>
+          <td>Re-Enter PassWord</td>
+          <td><input type="password" id="repass" value="" /></td>
+          <td id="errpass2" style="color: red"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button type="submit" onclick="validate()">Register</button></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="success" style="color: green"></td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
